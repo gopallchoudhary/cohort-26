@@ -83,3 +83,25 @@ The project uses two modern, web-safe Google Fonts:
 ```css
 font-family: "Inter", sans-serif;
 font-family: "Geist Mono", monospace;
+
+
+## 🎨 Color Palette
+
+The project uses a custom color palette to maintain consistency across the site:
+
+:root {
+    --bg-color: #ffffff;
+    --color-darkgreen: #1d4c56;
+    --color-lightgreen: #45bc97;
+    --color-badge: #96b099;
+    --color-brown: #b4ab48;
+    --color-darkbrown: #88600e;
+    --color-lightbrown: #d1d092;
+    --color-subheading: #08090acc;
+    --color-blue: #3a88c8;
+    --color-lightpink: #bca794;
+    --color-black: #000;
+
+    --text-white: #f4f5f4;
+    --hover-btn: #d9e4ea
+}
