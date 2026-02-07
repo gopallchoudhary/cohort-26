@@ -117,7 +117,7 @@ header {
     margin-top: 2.5rem;
 }
 
-/*-----badge starts-----*/
+/* Badge */
 .badge {
     border-radius: 50px;
     padding: 0.25rem;
@@ -172,9 +172,7 @@ header {
     text-align: center;
 }
 
-/*------------- Main Heading ends-------------*/
-
-/*------------- Email input + CTA button Starts-------------*/
+/* Input-form & CTA */
 .hero form {
     margin-top: 2rem;
     padding: 0.25rem;
@@ -340,7 +338,7 @@ h2 {
     margin-top: 100px;
 }
 
-/*-----enterprise feature starts-----*/
+/* Enterprise Feature */
 .enterprise-feature {
     min-width: 500px;
     margin-bottom: 38px;
@@ -486,10 +484,8 @@ h2 {
     cursor: pointer;
 }
 
-/*-----enterprise feature ends-----*/
+/* Case Study */
 
-
-/*-----case study starts-----*/
 .case-study {
     margin-bottom: 200px;
 }
@@ -670,7 +666,7 @@ footer {
     align-items: center;
 }
 
-.footer-head {
+.footer {
     min-width: 1028px;
     display: flex;
     justify-content: space-between;
@@ -678,10 +674,25 @@ footer {
     border: 1px solid rgb(203, 203, 203);
 }
 
-.social-logo {
+.social-icons {
     color: #55555585;
     display: flex;
     gap: 1rem;
+}
+
+#social-icon-linkedIn:hover {
+    cursor: pointer;
+    color: #7f8080;
+}
+
+#social-icon-X:hover {
+    cursor: pointer;
+    color: #7f8080;
+}
+
+#social-icon-github:hover {
+    cursor: pointer;
+    color: #7f8080;
 }
 
 .social-links {
