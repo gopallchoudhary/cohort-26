@@ -26,6 +26,17 @@ export class TodoController {
         }
     }
 
+    public getTodoById(req: Request, res: Response) {
+        const { id } = req.params
+        const index = this._db.findIndex((todo) => todo.id === id)
+
+        if (index === -1) {
+            return res.status(404).json({ message: "Todo not found" })
+        }
+
+        return res.json({ todo: this._db[index] })
+    }
+
     public async handleUpdateTodo(req: Request, res: Response) {
         const { id } = req.params
 
@@ -40,7 +51,6 @@ export class TodoController {
             const incomingData = req.body as Partial<Todo>
 
             const mergedTodo = { ...existingTodo, ...incomingData, id: existingTodo.id }
-
             const safeParseResult = await todoValidationSchema.parseAsync(mergedTodo)
 
             this._db[index] = safeParseResult
