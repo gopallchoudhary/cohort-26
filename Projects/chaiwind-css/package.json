@@ -6,13 +6,17 @@
 	"type": "module",
 	"files": [
 		"src",
-    "README.md"
+		"README.md"
 	],
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"keywords": ["css", "utility", "tailwind", "chaiwind"],
+	"keywords": [
+		"css",
+		"utility",
+		"tailwind",
+		"chaiwind"
+	],
 	"author": "Gopal Choudhary",
-	"license": "MIT",
-	"packageManager": "pnpm@10.13.1"
+	"license": "MIT"
 }
