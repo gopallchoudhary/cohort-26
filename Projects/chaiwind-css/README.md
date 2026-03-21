@@ -6,7 +6,7 @@ A utility-first CSS-in-JS library inspired by Tailwind CSS.
 
 ### Via CDN
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/chaiwind/src/index.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/chaiwind-css/src/index.js"></script>
 ```
 
 ### Via npm

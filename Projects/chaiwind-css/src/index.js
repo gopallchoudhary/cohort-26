@@ -1,12 +1,41 @@
 import classes from "./classes.js";
-const uniqueClasses = [...new Set(
-  [...document.querySelectorAll('[class]')]
-    .flatMap(el => [...el.classList])
-)];
 
 
-const style = document.createElement('style');
-style.textContent = `@keyframes spin {
+
+
+
+function applyChaiwind() {
+  const elements = [...document.querySelectorAll('[class]')];
+  if (elements.length === 0) {
+    console.log("No elements found");
+    return;
+  }
+
+  let animation = false
+
+  elements.forEach(el => {
+    el.classList.forEach(className => {
+
+      if (classes[className]) {
+        // exact O(1) lookup
+        const [prop, val] = classes[className]       // split "padding: 1rem"
+          .split(':').map(s => s.trim());            // trim whitespace
+        el.style.setProperty(prop, val);             // no override issue
+
+        // If there is a animation
+        if (className.startsWith('chai-animate')) {
+          animation = true
+        }
+      }
+    });
+  });
+
+
+  //, add animations
+  if (animation) {
+
+    const style = document.createElement('style');
+    style.textContent = `@keyframes spin {
   to {
     transform: rotate(360deg);
   }
@@ -30,18 +59,13 @@ style.textContent = `@keyframes spin {
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
 }`
-document.head.appendChild(style);
-
-
-
-
-
-for (let [key, value] of Object.entries(classes)) {
-  uniqueClasses.forEach(className => {
-    if (className.includes(key)) {
-      document.querySelectorAll(`.${className}`).forEach(el => {
-        el.style.cssText += "; " + value;
-      })
-    }
-  })
+    document.head.appendChild(style);
+  }
 }
+
+if (document.readyState === 'loading') {
+  window.addEventListener('DOMContentLoaded', applyChaiwind);
+} else {
+  applyChaiwind();
+}
+
