@@ -3,36 +3,461 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<title>Chaiwind CSS</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				font-family: "DM Sans", sans-serif;
+			}
+			a {
+				text-decoration: none;
+			}
+			ul {
+				list-style: none;
+			}
+			code {
+				font-family: "DM Mono", monospace;
+			}
+		</style>
 	</head>
-	<body>
-		<div
-			class="chai-flex chai-items-center chai-justify-center chai-bg-orange chai-p-4 chai-flex-col chai-gap-2 chai-h-screen"
+	<body class="chai-bg-black">
+		<!-- ── NAV ── -->
+		<nav
+			class="chai-flex chai-items-center chai-justify-between chai-px-8 chai-py-4 chai-border chai-border-gray chai-sticky chai-top-0 chai-z-100 chai-bg-black"
 		>
-			<button
-				class="chai-rounded-lg chai-border-black chai-px-6 chai-py-4 chai-bg-blue chai-text-xl chai-text-white chai-shadow-lg chai-animate-bounce"
+			<span class="chai-text-orange chai-font-semibold chai-text-lg">
+				☕ chaiwind
+			</span>
+			<ul class="chai-flex chai-gap-8 chai-items-center">
+				<li>
+					<a href="#features" class="chai-text-gray chai-text-sm">Features</a>
+				</li>
+				<li>
+					<a href="#install" class="chai-text-gray chai-text-sm">Install</a>
+				</li>
+				<li>
+					<a href="#classes" class="chai-text-gray chai-text-sm">Classes</a>
+				</li>
+				<li>
+					<a
+						href="https://www.npmjs.com/package/chaiwind-css"
+						target="_blank"
+						class="chai-bg-orange chai-text-white chai-text-sm chai-font-medium chai-px-4 chai-py-2 chai-rounded-lg chai-cursor-pointer"
+					>
+						npm →
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<!-- ── HERO ── -->
+		<section
+			class="chai-flex chai-flex-col chai-items-center chai-justify-center chai-min-h-screen chai-px-4 chai-text-center"
+		>
+			<div
+				class="chai-border chai-border-gray chai-rounded-full chai-px-4 chai-py-2 chai-mb-8 chai-text-sm chai-text-gray chai-font-medium"
 			>
-				Click me
-			</button>
-			<p
-				class="chai-font-medium chai-text-4xl chai-text-white chai-my-8 chai-animate-ping"
+				☕ v1.0.0 &nbsp;·&nbsp; <span class="chai-text-orange">now on npm</span>
+			</div>
+
+			<h1
+				class="chai-text-white chai-font-bold chai-mb-6"
+				style="
+					font-size: clamp(3rem, 8vw, 6rem);
+					line-height: 1.05;
+					letter-spacing: -0.02em;
+				"
 			>
-				Hello World, This is Chaiwind CSS
-			</p>
+				Style with <span class="chai-text-orange">chai</span><br />not chaos.
+			</h1>
 
 			<p
-				class="chai-font-medium chai-text-4xl chai-text-white chai-my-8 chai-animate-ping"
+				class="chai-text-gray chai-text-lg chai-max-w-md chai-mb-10 chai-leading-normal chai-font-light"
 			>
-				Hello World, This is Chaiwind CSS
+				A utility-first CSS-in-JS library that applies styles directly to your
+				DOM — no build step, no config, just classes.
 			</p>
 
-			<button
-				class="chai-rounded-lg chai-border-black chai-px-8 chai-py-6 chai-bg-red chai-text-2xl chai-text-white chai-shadow-lg chai-animate-bounce"
+			<div
+				class="chai-flex chai-gap-4 chai-items-center chai-flex-wrap chai-justify-center"
 			>
-				Click me
-			</button>
-		</div>
+				<a
+					href="#install"
+					class="chai-bg-orange chai-text-white chai-font-semibold chai-px-6 chai-py-3 chai-rounded-lg chai-cursor-pointer chai-transition"
+				>
+					Get Started
+				</a>
+				<a
+					href="https://github.com"
+					target="_blank"
+					class="chai-border chai-border-gray chai-text-gray chai-px-6 chai-py-3 chai-rounded-lg chai-text-sm chai-cursor-pointer chai-transition"
+				>
+					View on GitHub
+				</a>
+			</div>
 
-		<script type="module" src="/src/index.js"></script>
+			<div
+				class="chai-border chai-border-gray chai-rounded-xl chai-px-6 chai-py-4 chai-mt-12 chai-animate-ping"
+			>
+				<code class="chai-text-orange chai-text-sm"
+					>npm install chaiwind-css</code
+				>
+			</div>
+		</section>
+
+		<!-- ── HOW IT WORKS ── -->
+		<section
+			class="chai-px-8 chai-py-12 chai-max-w-3xl chai-mx-auto chai-text-center"
+		>
+			<p
+				class="chai-text-gray chai-text-sm chai-uppercase chai-tracking-wider chai-mb-4 chai-font-medium"
+			>
+				How it works
+			</p>
+			<h2 class="chai-text-white chai-text-3xl chai-font-bold chai-mb-4">
+				Zero config. Just classes.
+			</h2>
+			<p class="chai-text-gray chai-leading-normal chai-max-w-md chai-mx-auto">
+				Drop in the script tag. Add utility classes to your HTML. Chaiwind scans
+				the DOM and injects styles automatically.
+			</p>
+		</section>
+
+		<!-- ── STEPS ── -->
+		<section class="chai-px-8 chai-pb-16 chai-max-w-4xl chai-mx-auto">
+			<div class="chai-grid chai-grid-cols-3 chai-gap-6">
+				<div class="chai-border chai-border-gray chai-rounded-xl chai-p-6">
+					<div class="chai-text-orange chai-text-2xl chai-font-bold chai-mb-3">
+						01
+					</div>
+					<h3 class="chai-text-white chai-font-semibold chai-mb-2">Install</h3>
+					<p class="chai-text-gray chai-text-sm chai-leading-normal">
+						Add via npm or drop a CDN script tag into your HTML file.
+					</p>
+					<div
+						class="chai-border chai-border-gray chai-rounded-lg chai-px-4 chai-py-3 chai-mt-4"
+					>
+						<code class="chai-text-orange chai-text-xs"
+							>npm i chaiwind-css</code
+						>
+					</div>
+				</div>
+
+				<div class="chai-border chai-border-gray chai-rounded-xl chai-p-6">
+					<div class="chai-text-orange chai-text-2xl chai-font-bold chai-mb-3">
+						02
+					</div>
+					<h3 class="chai-text-white chai-font-semibold chai-mb-2">Import</h3>
+					<p class="chai-text-gray chai-text-sm chai-leading-normal">
+						Import once in your entry file or add the script tag to your HTML.
+					</p>
+					<div
+						class="chai-border chai-border-gray chai-rounded-lg chai-px-4 chai-py-3 chai-mt-4"
+					>
+						<code class="chai-text-orange chai-text-xs"
+							>import 'chaiwind-css'</code
+						>
+					</div>
+				</div>
+
+				<div class="chai-border chai-border-gray chai-rounded-xl chai-p-6">
+					<div class="chai-text-orange chai-text-2xl chai-font-bold chai-mb-3">
+						03
+					</div>
+					<h3 class="chai-text-white chai-font-semibold chai-mb-2">
+						Use classes
+					</h3>
+					<p class="chai-text-gray chai-text-sm chai-leading-normal">
+						Start adding chai- classes to any HTML element and watch it style
+						up.
+					</p>
+					<div
+						class="chai-border chai-border-gray chai-rounded-lg chai-px-4 chai-py-3 chai-mt-4"
+					>
+						<code class="chai-text-orange chai-text-xs"
+							>chai-flex chai-p-4</code
+						>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ── FEATURES ── -->
+		<section
+			id="features"
+			class="chai-px-8 chai-py-16 chai-max-w-4xl chai-mx-auto"
+		>
+			<p
+				class="chai-text-gray chai-text-sm chai-uppercase chai-tracking-wider chai-mb-4 chai-text-center chai-font-medium"
+			>
+				Features
+			</p>
+			<h2
+				class="chai-text-white chai-text-3xl chai-font-bold chai-mb-12 chai-text-center"
+			>
+				Everything you need
+			</h2>
+
+			<div class="chai-grid chai-grid-cols-2 chai-gap-6">
+				<div
+					class="chai-flex chai-gap-4 chai-items-start chai-border chai-border-gray chai-rounded-xl chai-p-6"
+				>
+					<span class="chai-text-orange chai-text-2xl">⚡</span>
+					<div>
+						<h3 class="chai-text-white chai-font-semibold chai-mb-2">
+							No build step
+						</h3>
+						<p class="chai-text-gray chai-text-sm chai-leading-normal">
+							Works directly in the browser. No webpack, no PostCSS, no config
+							files needed.
+						</p>
+					</div>
+				</div>
+
+				<div
+					class="chai-flex chai-gap-4 chai-items-start chai-border chai-border-gray chai-rounded-xl chai-p-6"
+				>
+					<span class="chai-text-orange chai-text-2xl">🎯</span>
+					<div>
+						<h3 class="chai-text-white chai-font-semibold chai-mb-2">
+							DOM-based injection
+						</h3>
+						<p class="chai-text-gray chai-text-sm chai-leading-normal">
+							Scans your page for chai- classes and injects only the styles
+							actually used.
+						</p>
+					</div>
+				</div>
+
+				<div
+					class="chai-flex chai-gap-4 chai-items-start chai-border chai-border-gray chai-rounded-xl chai-p-6"
+				>
+					<span class="chai-text-orange chai-text-2xl">🧩</span>
+					<div>
+						<h3 class="chai-text-white chai-font-semibold chai-mb-2">
+							100+ utilities
+						</h3>
+						<p class="chai-text-gray chai-text-sm chai-leading-normal">
+							Spacing, typography, colors, layout, borders, shadows, animations
+							and more.
+						</p>
+					</div>
+				</div>
+
+				<div
+					class="chai-flex chai-gap-4 chai-items-start chai-border chai-border-gray chai-rounded-xl chai-p-6"
+				>
+					<span class="chai-text-orange chai-text-2xl">🪶</span>
+					<div>
+						<h3 class="chai-text-white chai-font-semibold chai-mb-2">
+							Lightweight
+						</h3>
+						<p class="chai-text-gray chai-text-sm chai-leading-normal">
+							Just two files. No dependencies. Tiny footprint that won't bloat
+							your project.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ── CLASS SHOWCASE ── -->
+		<section
+			id="classes"
+			class="chai-px-8 chai-py-16 chai-max-w-4xl chai-mx-auto"
+		>
+			<p
+				class="chai-text-gray chai-text-sm chai-uppercase chai-tracking-wider chai-mb-4 chai-text-center chai-font-medium"
+			>
+				Showcase
+			</p>
+			<h2
+				class="chai-text-white chai-text-3xl chai-font-bold chai-mb-12 chai-text-center"
+			>
+				Classes in action
+			</h2>
+
+			<div class="chai-grid chai-grid-cols-2 chai-gap-6">
+				<!-- spacing -->
+				<div class="chai-border chai-border-gray chai-rounded-xl chai-p-6">
+					<p
+						class="chai-text-gray chai-text-xs chai-mb-4 chai-font-medium chai-uppercase chai-tracking-wide"
+					>
+						Spacing
+					</p>
+					<div class="chai-flex chai-flex-col chai-gap-2">
+						<div
+							class="chai-bg-orange chai-rounded chai-p-2 chai-text-white chai-text-xs"
+						>
+							<code>chai-p-2</code>
+						</div>
+						<div
+							class="chai-bg-orange chai-rounded chai-p-4 chai-text-white chai-text-xs"
+						>
+							<code>chai-p-4</code>
+						</div>
+						<div
+							class="chai-bg-orange chai-rounded chai-p-6 chai-text-white chai-text-xs"
+						>
+							<code>chai-p-6</code>
+						</div>
+					</div>
+				</div>
+
+				<!-- typography -->
+				<div class="chai-border chai-border-gray chai-rounded-xl chai-p-6">
+					<p
+						class="chai-text-gray chai-text-xs chai-mb-4 chai-font-medium chai-uppercase chai-tracking-wide"
+					>
+						Typography
+					</p>
+					<div class="chai-flex chai-flex-col chai-gap-3">
+						<p class="chai-text-white chai-text-xs chai-font-light">
+							<code class="chai-text-orange">chai-text-xs</code> — Extra small
+						</p>
+						<p class="chai-text-white chai-text-base chai-font-normal">
+							<code class="chai-text-orange">chai-text-base</code> — Base
+						</p>
+						<p class="chai-text-white chai-text-2xl chai-font-bold">
+							<code class="chai-text-orange">chai-text-2xl</code>
+						</p>
+					</div>
+				</div>
+
+				<!-- colors -->
+				<div class="chai-border chai-border-gray chai-rounded-xl chai-p-6">
+					<p
+						class="chai-text-gray chai-text-xs chai-mb-4 chai-font-medium chai-uppercase chai-tracking-wide"
+					>
+						Colors
+					</p>
+					<div class="chai-flex chai-gap-2 chai-flex-wrap">
+						<div class="chai-bg-red chai-rounded chai-w-8 chai-h-8"></div>
+						<div class="chai-bg-orange chai-rounded chai-w-8 chai-h-8"></div>
+						<div class="chai-bg-yellow chai-rounded chai-w-8 chai-h-8"></div>
+						<div class="chai-bg-green chai-rounded chai-w-8 chai-h-8"></div>
+						<div class="chai-bg-blue chai-rounded chai-w-8 chai-h-8"></div>
+						<div class="chai-bg-purple chai-rounded chai-w-8 chai-h-8"></div>
+						<div class="chai-bg-pink chai-rounded chai-w-8 chai-h-8"></div>
+						<div class="chai-bg-teal chai-rounded chai-w-8 chai-h-8"></div>
+					</div>
+				</div>
+
+				<!-- layout -->
+				<div class="chai-border chai-border-gray chai-rounded-xl chai-p-6">
+					<p
+						class="chai-text-gray chai-text-xs chai-mb-4 chai-font-medium chai-uppercase chai-tracking-wide"
+					>
+						Layout
+					</p>
+					<div class="chai-flex chai-justify-between chai-gap-2 chai-mb-3">
+						<div
+							class="chai-bg-gray chai-rounded chai-p-3 chai-flex-1 chai-text-white chai-text-xs chai-text-center"
+						>
+							col
+						</div>
+						<div
+							class="chai-bg-gray chai-rounded chai-p-3 chai-flex-1 chai-text-white chai-text-xs chai-text-center"
+						>
+							col
+						</div>
+						<div
+							class="chai-bg-gray chai-rounded chai-p-3 chai-flex-1 chai-text-white chai-text-xs chai-text-center"
+						>
+							col
+						</div>
+					</div>
+					<p class="chai-text-gray chai-text-xs">
+						<code class="chai-text-orange">chai-flex chai-justify-between</code>
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ── INSTALL ── -->
+		<section
+			id="install"
+			class="chai-px-8 chai-py-16 chai-max-w-3xl chai-mx-auto chai-text-center"
+		>
+			<p
+				class="chai-text-gray chai-text-sm chai-uppercase chai-tracking-wider chai-mb-4 chai-font-medium"
+			>
+				Get started
+			</p>
+			<h2 class="chai-text-white chai-text-3xl chai-font-bold chai-mb-4">
+				Two ways to install
+			</h2>
+			<p class="chai-text-gray chai-mb-12">
+				Pick whichever fits your workflow.
+			</p>
+
+			<div class="chai-grid chai-grid-cols-2 chai-gap-6 chai-text-left">
+				<div class="chai-border chai-border-gray chai-rounded-xl chai-p-6">
+					<p class="chai-text-white chai-font-semibold chai-mb-4">Via npm</p>
+					<div
+						class="chai-border chai-border-gray chai-rounded-lg chai-px-4 chai-py-3 chai-mb-3"
+					>
+						<code class="chai-text-orange chai-text-sm"
+							>npm install chaiwind-css</code
+						>
+					</div>
+					<div
+						class="chai-border chai-border-gray chai-rounded-lg chai-px-4 chai-py-3"
+					>
+						<code class="chai-text-orange chai-text-sm"
+							>import 'chaiwind-css'</code
+						>
+					</div>
+				</div>
+
+				<div class="chai-border chai-border-gray chai-rounded-xl chai-p-6">
+					<p class="chai-text-white chai-font-semibold chai-mb-4">Via CDN</p>
+					<div
+						class="chai-border chai-border-gray chai-rounded-lg chai-px-4 chai-py-3"
+					>
+						<code
+							class="chai-text-orange chai-text-xs"
+							style="word-break: break-all"
+							>&lt;script type="module"
+							src="https://cdn.jsdelivr.net/npm/chaiwind-css/src/index.js"&gt;
+							&lt;/script&gt;</code
+						>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ── FOOTER ── -->
+		<footer
+			class="chai-border chai-border-gray chai-px-8 chai-py-8 chai-flex chai-items-center chai-justify-between chai-mt-8"
+		>
+			<span class="chai-text-orange chai-font-semibold">☕ chaiwind-css</span>
+			<p class="chai-text-gray chai-text-sm">
+				Built by
+				<span class="chai-text-white chai-font-medium">Gopal Choudhary</span>
+			</p>
+			<a
+				href="https://www.npmjs.com/package/chaiwind-css"
+				target="_blank"
+				class="chai-text-gray chai-text-sm chai-cursor-pointer"
+			>
+				npm ↗
+			</a>
+		</footer>
+
+		<script
+			type="module"
+			src="https://cdn.jsdelivr.net/npm/chaiwind-css/src/index.js"
+		></script>
 	</body>
 </html>

@@ -1,9 +1,5 @@
 import classes from "./classes.js";
 
-
-
-
-
 function applyChaiwind() {
   const elements = [...document.querySelectorAll('[class]')];
   if (elements.length === 0) {
