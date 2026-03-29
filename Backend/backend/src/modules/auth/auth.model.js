@@ -43,4 +43,16 @@ const userSchema = new mongoose.Schema({
     //, prefer hashed tokens in DB 
 }, { timestamps: true })
 
+
+userSchema.pre("save", async function (next) {
+    if(!this.isModified("password")) next()
+    
+    this.password = await bcrypt.hash(this.password, 10)
+    next()
+})
+
+userSchema.methods.comparePassword = function (clearTextPassword) {
+    return bcrypt.compare(clearTextPassword, this.password)
+}
+
 export default mongoose.model("User", userSchema)
