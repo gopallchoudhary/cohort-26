@@ -1,12 +1,12 @@
-import ApiError from "../../common/utils/api-error";
-import { verifyAccessToken } from "../../common/utils/jwt.utils";
+import ApiError from "../../common/utils/api-error.js";
+import { verifyAccessToken } from "../../common/utils/jwt.utils.js";
 import User from '../auth/auth.model.js'
 
 const authenticate = async (req, res, next) => {
     let token;
-    if (req.headers.authorization?.startWith("Bearer")) {
-        token = req.headers.authorization.split(" ")[1]
-    }
+    if (req.headers.authorization?.startWith("Bearer") || req.cookies.accessToken) {
+        token = req.headers.authorization?.split(" ")[1] || req.cookies.accessToken
+    } 
 
     if (!token) throw ApiError.unauthorized("Not Authenticated")
 
