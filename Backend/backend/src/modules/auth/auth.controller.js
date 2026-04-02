@@ -11,7 +11,7 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
-    const { user, accessToken, refreshToken } = await authService.logout(req.body)
+    const { user, accessToken, refreshToken } = await authService.login(req.body)
 
     res.cookie("refreshToken", refreshToken, {
         httpOnly: true,

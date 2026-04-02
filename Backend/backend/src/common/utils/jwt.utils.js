@@ -9,20 +9,20 @@ const generateResetToken = () => {
 }
 
 const generateAccessToken = (payload) => {
-    return jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: JWT_ACCESS_EXPIRES_IN || '15m' })
+    return jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: process.env.JWT_ACCESS_EXPIRES_IN || '15m' })
 }
 
 const verifyAccessToken = (token) => {
-    return jwt.verify(token, JWT_ACCESS_SECRET)
+    return jwt.verify(token, process.env.JWT_ACCESS_SECRET)
 }
 
 
 const generateRefreshTokne = (payload) => {
-    return jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: JWT_REFRESGH_EXPIRES_IN || '24h' })
+    return jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: process.env.JWT_REFRESGH_EXPIRES_IN || '24h' })
 }
 
 const verifyRefreshToken = (token) => {
-    return jwt.verify(token, JWT_REFRESH_SECRET)
+    return jwt.verify(token, process.env.JWT_REFRESH_SECRET)
 }
 
 

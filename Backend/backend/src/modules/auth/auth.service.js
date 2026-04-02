@@ -8,7 +8,8 @@ const hashedToken = (token) => crypto.createHash("sha256").update(token).digest(
 
 const register = async ({ name, email, password, role }) => {
     const existingUser = await User.findOne({ email })
-    if (!existingUser) throw ApiError.conflict("User already registered")
+
+    if (existingUser) throw ApiError.conflict("User already registered")
 
     const { rawToken, hashedToken } = generateResetToken()
 
@@ -38,16 +39,20 @@ const login = async ({ email, password }) => {
 
     if (!isPasswordCorrect) throw ApiError.unauthorized("Ivalid email or password")
 
+    if (!user.isVerified) throw ApiError.forbidden("Please verify your email before logging in")
+
     const accessToken = generateAccessToken({ id: user._id, email: user.email, role: user.role })
     const refreshToken = generateRefreshTokne({ id: user._id })
 
     user.refreshToken = hashedToken(refreshToken)
+    await user.save({ validateBeforeSave: false })
 
-    const userobj = user
-    delete user.password
-    delete user.refreshToken
+    const userObj = user.toObject()
+    delete userObj.password
+    delete userObj.refreshToken
+    
 
-    return { user: userobj, accessToken, refreshToken }
+    return { user: userObj, accessToken, refreshToken }
 }
 
 
