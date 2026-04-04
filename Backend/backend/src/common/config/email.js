@@ -1,19 +1,25 @@
 import nodemailer from "nodemailer";
-
-
+import 'dotenv/config'
 const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT) || 587,
+    host: process.env.MAILTRAP_HOST,
+    port: Number(process.env.MAILTRAP_PORT) || 587,
     auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: process.env.MAILTRAP_USER,
+        pass: process.env.MAILTRAP_PASS,
     },
 });
 
 const sendEmail = async (to, subject, html) => {
+
+
+    transporter.verify((error, success) => {
+        if (error) console.log("Mailtrap error:", error)
+        else console.log("Mailtrap connected ✅")
+    })
+
     try {
         await transporter.sendMail({
-            from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
+            from: `"${process.env.MAILTRAP_FROM_NAME}" <${process.env.MAILTRAP_FROM_EMAIL}>`,
             to,
             subject,
             html,
@@ -37,6 +43,8 @@ const sendVerificationEmail = async (email, token) => {
 
 
 const sendResetPasswordEmail = async (email, token) => {
+    console.log("email: ", email, " token: ", token);
+
     const html = `
     <p>Hello,</p>
     <p>Please click the following link to reset your password:</p>

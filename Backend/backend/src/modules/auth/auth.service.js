@@ -2,6 +2,7 @@ import ApiError from '../../common/utils/api-error.js'
 import { generateAccessToken, generateRefreshTokne, generateResetToken, verifyRefreshToken } from '../../common/utils/jwt.utils.js'
 import crypto from 'crypto'
 import User from './auth.model.js'
+import { sendResetPasswordEmail, sendVerificationEmail } from '../../common/config/email.js'
 
 const hashedToken = (token) => crypto.createHash("sha256").update(token).digest("hex")
 
@@ -22,6 +23,11 @@ const register = async ({ name, email, password, role }) => {
     })
 
     // send verification email
+    try {
+        await sendVerificationEmail(email, rawToken)
+    } catch (error) {
+        console.error("Failed to send verification email:", err.message);
+    }
 
     const userObj = user
     delete userObj.password
@@ -50,7 +56,7 @@ const login = async ({ email, password }) => {
     const userObj = user.toObject()
     delete userObj.password
     delete userObj.refreshToken
-    
+
 
     return { user: userObj, accessToken, refreshToken }
 }
@@ -111,14 +117,18 @@ const forgotPassword = async (email) => {
     await user.save()
 
     // send reset password email
-
+    try {
+        await sendResetPasswordEmail(email, rawToken)
+    } catch (error) {
+        console.error("Failed to send reset email:", err.message);
+    }
 }
 
 const resetPassword = async (token, newPassword) => {
     const hashed = hashedToken(token)
 
     const user = await User.findOne({
-        resetPasswordToken: hashed,
+        resetPasswordToken: token,
         resetPasswordExpires: { $gt: Date.now() }
     }).select("+resetPasswordToken +resetPasswordExpires")
 
@@ -132,6 +142,7 @@ const resetPassword = async (token, newPassword) => {
 
 const getMe = async (userId) => {
     const user = await User.findById(userId)
+
     if (!user) throw ApiError.notFound("User not found")
     return user
 }
