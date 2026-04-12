@@ -4,11 +4,12 @@
 			"ssh": "Disabled",
 			"previewLimit": 50,
 			"server": "localhost",
-			"port": 5432,
+			"port": 5433,
+			"askForPassword": true,
 			"driver": "PostgreSQL",
-			"name": "my-postgres",
-			"database": "mydb",
-			"username": "admin"
+			"name": "cohort_sql",
+			"database": "postgres",
+			"username": "postgres"
 		}
 	]
 }

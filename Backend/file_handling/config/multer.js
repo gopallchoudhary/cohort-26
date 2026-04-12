@@ -13,7 +13,7 @@ const upload = multer({
         } else {
             cb(new Error('Only jpg, png and webp files are allowed'), false)
         }
-    },
+    },  
 });
 
 export default upload;

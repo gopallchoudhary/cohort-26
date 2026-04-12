@@ -6,7 +6,7 @@ Array.prototype.myMap = function (callbackFn) {
         throw new Error("Callback is not function")
     }
 
-    let result = new Array(this.length)
+    let result = new Array(this.length) // is case me sparse array banta hai => array which has missing or empty indexes
 
     let flag = 0;
 

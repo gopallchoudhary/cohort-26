@@ -5,6 +5,7 @@ CREATE TABLE users(
     age INT CHECK(age > 12)
 )
 
+
 INSERT INTO users(name, email, age)
 VALUES
 ('Omesh', 'omesh2@gmail.com', 25),
