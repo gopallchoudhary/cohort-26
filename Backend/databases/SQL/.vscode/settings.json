@@ -5,10 +5,9 @@
 			"previewLimit": 50,
 			"server": "localhost",
 			"port": 5433,
-			"askForPassword": true,
 			"driver": "PostgreSQL",
-			"name": "cohort_sql",
-			"database": "postgres",
+			"name": "postgres",
+			"database": "sql_class_2_db",
 			"username": "postgres"
 		}
 	]

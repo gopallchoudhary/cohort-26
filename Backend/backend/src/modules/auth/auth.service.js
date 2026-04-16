@@ -95,7 +95,7 @@ const verifyEmail = async (token) => {
         user = await User.findOne({ verificationToken: hashed }).select("+verificationToken")
     }
 
-    if (!user) throw ApiError.unauthorized("Invalid or expired refresh token")
+    if (!user) throw ApiError.unauthorized("Invalid or expired verification token")
 
     await User.findByIdAndUpdate(user._id, {
         $set: { isVerified: true },
