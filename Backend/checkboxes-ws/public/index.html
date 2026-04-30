@@ -83,6 +83,45 @@
 				}
 			}
 
+			.error-alert {
+				position: fixed;
+				top: 20px;
+				right: 20px;
+				background: #ff4444;
+				color: white;
+				padding: 15px 20px;
+				border-radius: 8px;
+				box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+				max-width: 400px;
+				word-wrap: break-word;
+				animation: slideIn 0.3s ease-out;
+				z-index: 1000;
+			}
+
+			.error-alert.fade-out {
+				animation: fadeOut 0.3s ease-out forwards;
+			}
+
+			@keyframes slideIn {
+				from {
+					transform: translateX(400px);
+					opacity: 0;
+				}
+				to {
+					transform: translateX(0);
+					opacity: 1;
+				}
+			}
+
+			@keyframes fadeOut {
+				from {
+					opacity: 1;
+				}
+				to {
+					opacity: 0;
+				}
+			}
+
 			@media (max-width: 768px) {
 				h1 {
 					font-size: 2rem;
@@ -99,6 +138,12 @@
 					width: 25px;
 					height: 25px;
 				}
+
+				.error-alert {
+					top: 10px;
+					right: 10px;
+					max-width: 90vw;
+				}
 			}
 		</style>
 	</head>
@@ -112,24 +157,66 @@
 			const count = 200;
 			const socket = io();
 
+			function showErrorAlert(message) {
+				console.log("Showing error alert:", message);
+				const alert = document.createElement("div");
+				alert.className = "error-alert";
+				alert.textContent = String(message);
+				document.body.appendChild(alert);
+				console.log("Alert element added to DOM");
+
+				setTimeout(() => {
+					alert.classList.add("fade-out");
+					setTimeout(() => alert.remove(), 300);
+				}, 4000);
+			}
+
+			
+
+			socket.on("error", (error) => {
+				console.error("Socket error:", error);
+				showErrorAlert("Error: " + String(error));
+			});
+
+			socket.on("server-error", (data) => {
+				console.log("Server-error event received:", data);
+				const errorMessage = data?.error || data || "Unknown error";
+				if (errorMessage) {
+					console.log("Displaying error message:", errorMessage);
+					showErrorAlert(errorMessage);
+				} else {
+					console.warn("No error message in data");
+				}
+			});
+
 			socket.on("server:checkbox:change", (message) => {
 				const { index, checked } = message;
 				const input = document.getElementById(`checkbox-#${index}`);
-				input.checked = checked;
+
+				if (input) {
+					input.checked = checked;
+				}
 			});
 
-			new Array(count).fill(null).forEach((_, index) => {
-				const input = document.createElement("input");
-				input.type = "checkbox";
-				input.id = `checkbox-#${index}`;
+			window.addEventListener("load", async () => {
+				const response = await fetch("/checkboxes", { method: "GET" });
+				const data = await response.json();
 
-				input.addEventListener("change", (event) => {
-					const checked = event.target.checked;
+				if (data && data.checkboxes) {
+					data.checkboxes.forEach((serverValue, index) => {
+						const input = document.createElement("input");
+						input.type = "checkbox";
+						input.id = `checkbox-#${index}`;
+						input.checked = serverValue;
 
-					socket.emit("client:checkbox:change", { index, checked });
-				});
+						input.addEventListener("change", (event) => {
+							const checked = event.target.checked;
+							socket.emit("client:checkbox:change", { index, checked });
+						});
 
-				container.appendChild(input);
+						container.appendChild(input);
+					});
+				}
 			});
 		</script>
 	</body>
