@@ -2,7 +2,7 @@ import Redis from "ioredis";
 
 
 function createRedisConnection() {
-    return new Redis(process.env.REDIS_URL)
+    return new Redis(process.env.REDIS_URL, {maxRetriesPerRequest: 1})
 }
 
 
