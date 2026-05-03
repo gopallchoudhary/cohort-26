@@ -4,7 +4,7 @@ import http from 'node:http'
 import path from "node:path";
 import { kafkaClient } from "./kafka-client.js";
 
-function main() {
+async function main() {
     const app = express()
     const PORT = process.env.PORT ?? 8000
     const server = http.createServer(app)
@@ -43,7 +43,7 @@ function main() {
         return res.json({ healthy: true })
     })
 
-    io.on('connection', (socket) => {
+    io.on('connection', async(socket) => {
         console.log(`[Socket]:${socket.id}`)
 
         socket.on('client:location:update', (locationData) => {
