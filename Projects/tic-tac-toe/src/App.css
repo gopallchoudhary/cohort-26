@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Kalam:wght@300;400;700&display=swap');
+
+:root {
+  --paper: #fdf8ef;
+  --ink: #2c2c2c;
+  --ink-light: #555;
+  --x-color: #e05c2b;
+  --o-color: #2b7ae0;
+  --win-highlight: #f6d860;
+  --border-rough: #3a3a3a;
+  --shadow-sketch: 3px 3px 0px #2c2c2c;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--paper);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 27px,
+      rgba(180, 210, 240, 0.35) 27px,
+      rgba(180, 210, 240, 0.35) 28px
+    );
+  font-family: 'Kalam', cursive;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── App Wrapper ── */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 40px 32px;
+  position: relative;
+}
+
+/* ── Title ── */
+.game-title {
+  font-family: 'Caveat', cursive;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 1px;
+  text-align: center;
+  position: relative;
+  line-height: 1.1;
+}
+
+.game-title span.x-letter {
+  color: var(--x-color);
+}
+.game-title span.o-letter {
+  color: var(--o-color);
+}
+
+.title-underline {
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  border-bottom: 3px solid var(--ink);
+  border-radius: 50% 50% 50% 50% / 0 0 3px 3px;
+  margin-top: 2px;
+  filter: url(#roughen);
+}
+
+/* ── Status Banner ── */
+.status-banner {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: #fff;
+  border: 2.5px solid var(--ink);
+  border-radius: 6px;
+  padding: 8px 28px;
+  box-shadow: var(--shadow-sketch);
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.status-banner.winner-x { border-color: var(--x-color); color: var(--x-color); box-shadow: 3px 3px 0 var(--x-color); }
+.status-banner.winner-o { border-color: var(--o-color); color: var(--o-color); box-shadow: 3px 3px 0 var(--o-color); }
+.status-banner.draw     { border-color: #888; color: #666; }
+
+/* ── Board ── */
+.board-container {
+  position: relative;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 110px);
+  grid-template-rows: repeat(3, 110px);
+  gap: 0;
+  position: relative;
+  background: transparent;
+}
+
+/* SVG grid lines drawn on top */
+.board-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Cell ── */
+.cell {
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.15s ease;
+  background: transparent;
+  z-index: 2;
+}
+
+.cell:hover:not(.filled):not(.game-over) {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.cell.filled {
+  cursor: default;
+}
+
+/* ── X Mark ── */
+.mark-x {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  animation: popIn 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.mark-x svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.mark-x path {
+  stroke: var(--x-color);
+  stroke-width: 6;
+  stroke-linecap: round;
+  fill: none;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  animation: drawStroke 0.3s ease-out both;
+}
+
+/* ── O Mark ── */
+.mark-o {
+  width: 64px;
+  height: 64px;
+  animation: popIn 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.mark-o svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.mark-o ellipse {
+  stroke: var(--o-color);
+  stroke-width: 6;
+  stroke-linecap: round;
+  fill: none;
+  stroke-dasharray: 250;
+  stroke-dashoffset: 0;
+  animation: drawStroke 0.4s ease-out both;
+}
+
+/* ── Winning Cell Highlight ── */
+.cell.winning {
+  background: rgba(246, 216, 96, 0.5);
+  border-radius: 4px;
+}
+
+/* ── Reset Button ── */
+.reset-btn {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--ink);
+  background: #fff;
+  border: 2.5px solid var(--ink);
+  border-radius: 6px;
+  padding: 10px 36px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sketch);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.reset-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.reset-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+/* ── Score Board ── */
+.scoreboard {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.score-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  padding: 10px 22px;
+  box-shadow: var(--shadow-sketch);
+  min-width: 80px;
+}
+
+.score-label {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: var(--ink-light);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.score-label.x { color: var(--x-color); }
+.score-label.o { color: var(--o-color); }
+
+.score-value {
+  font-family: 'Caveat', cursive;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.score-divider {
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  color: var(--ink-light);
+  font-weight: 600;
+}
+
+/* ── Pencil decoration ── */
+.doodle-corner {
+  position: fixed;
+  opacity: 0.12;
+  pointer-events: none;
+  font-size: 80px;
+}
+.doodle-corner.tl { top: 16px;  left: 20px; transform: rotate(-20deg); }
+.doodle-corner.tr { top: 16px;  right: 20px; transform: rotate(20deg); }
+.doodle-corner.bl { bottom: 16px; left: 20px; transform: rotate(15deg); }
+.doodle-corner.br { bottom: 16px; right: 20px; transform: rotate(-15deg); }
+
+/* ── Animations ── */
+@keyframes popIn {
+  0%   { transform: scale(0) rotate(-10deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0deg);   opacity: 1; }
+}
+
+@keyframes drawStroke {
+  from { stroke-dashoffset: 100; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-1deg); }
+  50%       { transform: rotate(1deg);  }
+}
