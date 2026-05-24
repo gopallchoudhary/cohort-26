@@ -90,12 +90,7 @@ function App() {
         </div>
       </main>
 
-      {/* Subtle Footer branding */}
-      <footer className="w-full text-center py-6 border-t border-white/5 bg-slate-950/20 backdrop-blur-md relative z-10">
-        <p className="text-[10px] text-slate-500 tracking-widest font-mono">
-          DESIGNED & SYNTHESIZED BY ANTIGRAVITY AI &copy; {new Date().getFullYear()}
-        </p>
-      </footer>
+      
     </div>
   );
 }

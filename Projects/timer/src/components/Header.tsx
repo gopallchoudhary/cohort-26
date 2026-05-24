@@ -30,7 +30,7 @@ export const Header: React.FC<HeaderProps> = ({ isMuted, onToggleMute }) => {
         </div>
         <div>
           <h1 className="text-lg font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent flex items-center gap-1.5">
-            AETHER<span className="text-cyan-400 font-extrabold text-[10px] tracking-widest px-1.5 py-0.5 rounded bg-cyan-950/50 border border-cyan-500/20 shadow-[0_0_10px_rgba(6,182,212,0.1)]">CHRONO</span>
+            TIMER
           </h1>
           <p className="text-[10px] text-slate-500 tracking-wider font-semibold uppercase">Precision Time Suite</p>
         </div>
