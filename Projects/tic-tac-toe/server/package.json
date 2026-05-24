@@ -1,0 +1,6 @@
+{
+	"name": "tic-tac-server",
+	"scripts": {
+		"start": "bun run index.ts"
+	}
+}
