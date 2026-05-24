@@ -135,6 +135,33 @@ body {
   background: rgba(0, 0, 0, 0.04);
 }
 
+/* ── Preview Mark on Hover ── */
+.preview-mark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+
+.cell:hover:not(.filled):not(.game-over) .preview-mark {
+  opacity: 0.25;
+}
+
+.preview-mark .mark-x,
+.preview-mark .mark-o {
+  animation: none !important;
+}
+
+.preview-mark path,
+.preview-mark ellipse {
+  animation: none !important;
+  stroke-dashoffset: 0 !important;
+}
+
 .cell.filled {
   cursor: default;
 }

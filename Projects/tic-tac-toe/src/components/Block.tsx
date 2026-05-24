@@ -5,6 +5,7 @@ interface BlockProps {
   onClick: () => void
   isWinning?: boolean
   gameOver?: boolean
+  currentPlayer?: string
 }
 
 // Slightly wobbly X — two crossing lines that aren't perfectly straight
@@ -39,7 +40,7 @@ const OMark = () => (
   </div>
 )
 
-const Block = ({ value, onClick, isWinning = false, gameOver = false }: BlockProps) => {
+const Block = ({ value, onClick, isWinning = false, gameOver = false, currentPlayer }: BlockProps) => {
   return (
     <div
       className={`cell ${value ? 'filled' : ''} ${isWinning ? 'winning' : ''} ${gameOver ? 'game-over' : ''}`}
@@ -47,6 +48,11 @@ const Block = ({ value, onClick, isWinning = false, gameOver = false }: BlockPro
     >
       {value === 'X' && <XMark />}
       {value === 'O' && <OMark />}
+      {!value && !gameOver && currentPlayer && (
+        <div className="preview-mark">
+          {currentPlayer === 'X' ? <XMark /> : <OMark />}
+        </div>
+      )}
     </div>
   )
 }

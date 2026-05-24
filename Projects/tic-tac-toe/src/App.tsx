@@ -133,6 +133,7 @@ function App() {
                 onClick={() => handleClick(index)}
                 isWinning={winLine?.includes(index) ?? false}
                 gameOver={gameOver}
+                currentPlayer={currentPlayer}
               />
             ))}
           </div>
