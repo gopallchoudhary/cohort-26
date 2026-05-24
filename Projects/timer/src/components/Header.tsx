@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Keyboard, X, Clock, Zap } from 'lucide-react';
+import { Volume2, VolumeX, X, Clock, Zap } from 'lucide-react';
 import { audio } from '../utils/audio';
 
 interface HeaderProps {
