@@ -3,7 +3,8 @@ import { io, Socket } from "socket.io-client"
 import Block from "./components/Block"
 import "./App.css"
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:3001"
+
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "https://tictac.gopalchoudhary.dev/"
 
 // ── Win conditions ──────────────────────────────────────────────────────────
 const WIN_LINES = [
