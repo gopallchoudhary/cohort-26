@@ -38,17 +38,7 @@ export const Header: React.FC<HeaderProps> = ({ isMuted, onToggleMute }) => {
 
       {/* Utilities */}
       <div className="flex items-center gap-3">
-        {/* Keybind Help Trigger */}
-        <button
-          onClick={() => {
-            audio.playClick();
-            setShowKeybinds(true);
-          }}
-          className="p-2.5 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.06] hover:border-white/10 active:scale-95 text-slate-400 hover:text-slate-200 transition-all cursor-pointer"
-          title="Keyboard Shortcuts"
-        >
-          <Keyboard className="w-4 h-4" />
-        </button>
+        
 
         {/* Audio Mute Trigger */}
         <button
