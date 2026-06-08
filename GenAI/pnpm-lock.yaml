@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@inngest/ai':
+        specifier: ^0.1.7
+        version: 0.1.7
       dotenv:
         specifier: ^17.4.2
         version: 17.4.2

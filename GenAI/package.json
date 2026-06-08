@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
+	"type": "module",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
@@ -11,6 +12,7 @@
 	"license": "ISC",
 	"packageManager": "pnpm@10.13.1",
 	"dependencies": {
+		"@inngest/ai": "^0.1.7",
 		"dotenv": "^17.4.2",
 		"express": "^5.2.1",
 		"inngest": "^4.5.0",
